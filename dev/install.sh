@@ -2,41 +2,43 @@
 . "$(dirname $0)/vars.sh"
 REMOTE_USERNAME="jorodriguez"
 REMOTE_HOSTNAME=192.168.2.32
+DOCKER=false;
 case "$1" in
 	ansible)
 		ansible dev -m ping
 		ansible-playbook -K dev.yml
 		ansible-playbook -K mysql.yml
 	;;
-	copy-remote)
+	remote)
+		./$0 copy
+		./$0 new-remote
+		./$0 all-remote
+
+	;;
+	copy)
 		  ssh $REMOTE_USERNAME@$REMOTE_HOSTNAME "mkdir -p ~/meritoki/dailybread/cloud"
-		  scp -r ./ $REMOTE_USERNAME@$REMOTE_HOSTNAME:~/meritoki/dailybread/cloud
+		  scp -rp ./install.sh $REMOTE_USERNAME@$REMOTE_HOSTNAME:~/meritoki/dailybread/cloud/
+	;;
+	new-remote)
+		  ssh $REMOTE_USERNAME@$REMOTE_HOSTNAME "cd ~/meritoki/dailybread/cloud/;./install.sh new"
+	
 	;;
 	all-remote)
 		  ssh $REMOTE_USERNAME@$REMOTE_HOSTNAME "cd ~/meritoki/dailybread/cloud/;./install.sh all"
 	
 	;;
-	clone-local)
-		git clone ~/Workspace/Config/config/.git
-		git clone ~/Workspace/Application/app/.git
-		git clone ~/Workspace/Service/service/.git
-		git clone ~/Workspace/Service/auth/.git
-		git clone ~/Workspace/Service/user/.git
-		git clone ~/Workspace/Service/id/.git
-		git clone ~/Workspace/Service/location/.git
-		git clone ~/Workspace/Database/database/.git
-	;;
-	clone-remote)
+	clone)
 		git clone https://github.com/meritoki/config.git
-		git clone https://github.com/meritoki/app.git
-		git clone https://github.com/meritoki/service.git
 		git clone https://github.com/meritoki/auth.git
 		git clone https://github.com/meritoki/user.git
 		git clone https://github.com/meritoki/id.git
 		git clone https://github.com/meritoki/location.git
 		git clone https://github.com/meritoki/database.git
+		git clone https://github.com/meritoki/app.git
+		git clone https://github.com/meritoki/service.git
 	;;
-	clone-remove)
+	remove)
+		echo remove
 		sudo rm -r config
 		sudo rm -r app
 		sudo rm -r service
@@ -46,15 +48,9 @@ case "$1" in
 		sudo rm -r location
 		sudo rm -r database
 	;;
-	new-local)
-		./$0 ansible
+	new)
 		./$0 remove
-		./$0 clone-local
-		./$0 all
-	;;
-	new-remote)
-		./$0 remove
-		./$0 clone-remote
+		./$0 clone
 		./$0 all
 	;;
 	all)
@@ -77,8 +73,12 @@ case "$1" in
 			git pull
 			sudo npm install
 			cp ../config/local/app/web/properties.js controller/properties.js
-			sudo docker build -t meritoki/web-application .
-			sudo docker run -dlt --restart unless-stopped -p 80:8080 meritoki/web-application
+			if [ "$DOCKER" = true ]; then
+				sudo docker build -t meritoki/web-application .
+				sudo docker run -dlt --restart unless-stopped -p 80:8080 meritoki/web-application
+			else
+				sudo nodejs index.js &			
+			fi
 		cd -
 	;;
 	service)
@@ -88,8 +88,12 @@ case "$1" in
 			git pull
 			sudo npm install
 			cp ../config/local/service/service/properties.js controller/properties.js
-			sudo docker build -t meritoki/web-service .
-			sudo docker run -dlt --restart unless-stopped -p 8080:8080 meritoki/web-service
+			if [ "$DOCKER" = true ] ; then
+				sudo docker build -t meritoki/web-service .
+				sudo docker run -dlt --restart unless-stopped -p 8080:8080 meritoki/web-service
+			else
+				sudo nodejs index.js &	
+			fi
 		cd -
 		./$0 app
 		./$0 user
@@ -104,8 +108,12 @@ case "$1" in
 			git pull
 			sudo npm install
 			cp ../config/local/service/auth/properties.js controller/properties.js
-			sudo docker build -t meritoki/auth-service .
-			sudo docker run -dlt --restart unless-stopped -p 3000:3000 meritoki/auth-service
+			if [ "$DOCKER" = true ] ; then
+				sudo docker build -t meritoki/auth-service .
+				sudo docker run -dlt --restart unless-stopped -p 3000:3000 meritoki/auth-service
+			else
+				sudo nodejs index.js &	
+			fi
 		cd -
 	;;
 	user)
@@ -115,8 +123,12 @@ case "$1" in
 			git pull
 			sudo npm install
 			cp ../config/local/service/user/properties.js controller/properties.js
-			sudo docker build -t meritoki/user-service .
-			sudo docker run -dlt --restart unless-stopped -p 3001:3001 meritoki/user-service
+			if [ "$DOCKER" = true ]; then
+				sudo docker build -t meritoki/user-service .
+				sudo docker run -dlt --restart unless-stopped -p 3001:3001 meritoki/user-service
+			else
+				sudo nodejs index.js &	
+			fi
 		cd -
 	;;
 	location)
@@ -126,8 +138,12 @@ case "$1" in
 			git pull
 			sudo npm install
 			cp ../config/local/service/location/properties.js controller/properties.js
-			sudo docker build -t meritoki/location-service .
-			sudo docker run -dlt --restart unless-stopped -p 3002:3002 meritoki/location-service
+			if [ "$DOCKER" = true ]; then
+				sudo docker build -t meritoki/location-service .
+				sudo docker run -dlt --restart unless-stopped -p 3002:3002 meritoki/location-service
+			else
+				sudo nodejs index.js &	
+			fi
 		cd -
 	;;
 	id)
@@ -137,8 +153,12 @@ case "$1" in
 			git pull
 			sudo npm install
 			cp ../config/local/service/id/properties.js controller/properties.js
-			sudo docker build -t meritoki/id-service .
-			sudo docker run -dlt --restart unless-stopped -p 3003:3003 meritoki/id-service
+			if [ "$DOCKER" = true ]; then
+				sudo docker build -t meritoki/id-service .
+				sudo docker run -dlt --restart unless-stopped -p 3003:3003 meritoki/id-service
+			else
+				sudo nodejs index.js &	
+			fi
 		cd -
 	;;
 	database)
