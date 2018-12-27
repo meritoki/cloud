@@ -1,0 +1,2 @@
+ROOT_PATH=$(pwd);
+VERSION=0.1
