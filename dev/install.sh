@@ -1,8 +1,5 @@
 #!/bin/bash
 . "$(dirname $0)/vars.sh"
-REMOTE_USERNAME="jorodriguez"
-REMOTE_HOSTNAME=192.168.2.32
-DOCKER=false;
 case "$1" in
 	ansible)
 		ansible dev -m ping
@@ -17,15 +14,15 @@ case "$1" in
 	;;
 	copy)
 		  ssh $REMOTE_USERNAME@$REMOTE_HOSTNAME "mkdir -p ~/meritoki/dailybread/cloud"
-		  scp -rp ./install.sh $REMOTE_USERNAME@$REMOTE_HOSTNAME:~/meritoki/dailybread/cloud/
+		  scp -rp ./install.sh ./jenkins.sh ./vars.sh $REMOTE_USERNAME@$REMOTE_HOSTNAME:~/meritoki/dailybread/cloud/
 	;;
 	new-remote)
 		  ssh $REMOTE_USERNAME@$REMOTE_HOSTNAME "cd ~/meritoki/dailybread/cloud/;./install.sh new"
-	
+
 	;;
 	all-remote)
 		  ssh $REMOTE_USERNAME@$REMOTE_HOSTNAME "cd ~/meritoki/dailybread/cloud/;./install.sh all"
-	
+
 	;;
 	clone)
 		git clone https://github.com/meritoki/config.git
@@ -75,9 +72,9 @@ case "$1" in
 			cp ../config/local/app/web/properties.js controller/properties.js
 			if [ "$DOCKER" = true ]; then
 				sudo docker build -t meritoki/web-application .
-				sudo docker run -dlt --restart unless-stopped -p 80:8080 meritoki/web-application
+				sudo docker run --network host -dlt --restart unless-stopped -p 80:8080 meritoki/web-application
 			else
-				sudo nodejs index.js &			
+				sudo nodejs index.js &
 			fi
 		cd -
 	;;
@@ -90,18 +87,17 @@ case "$1" in
 			cp ../config/local/service/service/properties.js controller/properties.js
 			if [ "$DOCKER" = true ] ; then
 				sudo docker build -t meritoki/web-service .
-				sudo docker run -dlt --restart unless-stopped -p 8080:8080 meritoki/web-service
+				sudo docker run --network host -dlt --restart unless-stopped -p 8080:8080 meritoki/web-service
 			else
-				sudo nodejs index.js &	
+				sudo nodejs index.js &
 			fi
 		cd -
-		./$0 app
-		./$0 user
-		./$0 location
-		./$0 id
+#		./$0 app
+#		./$0 user
+#		./$0 location
+#		./$0 id
 	;;
 	auth)
-
 		cd auth
 			echo auth
 			git checkout $VERSION
@@ -110,9 +106,9 @@ case "$1" in
 			cp ../config/local/service/auth/properties.js controller/properties.js
 			if [ "$DOCKER" = true ] ; then
 				sudo docker build -t meritoki/auth-service .
-				sudo docker run -dlt --restart unless-stopped -p 3000:3000 meritoki/auth-service
+				sudo docker run --network host -dlt --restart unless-stopped -p 3000:3000 meritoki/auth-service
 			else
-				sudo nodejs index.js &	
+				sudo nodejs index.js &
 			fi
 		cd -
 	;;
@@ -125,9 +121,9 @@ case "$1" in
 			cp ../config/local/service/user/properties.js controller/properties.js
 			if [ "$DOCKER" = true ]; then
 				sudo docker build -t meritoki/user-service .
-				sudo docker run -dlt --restart unless-stopped -p 3001:3001 meritoki/user-service
+				sudo docker run --network host -dlt --restart unless-stopped -p 3001:3001 meritoki/user-service
 			else
-				sudo nodejs index.js &	
+				sudo nodejs index.js &
 			fi
 		cd -
 	;;
@@ -140,9 +136,9 @@ case "$1" in
 			cp ../config/local/service/location/properties.js controller/properties.js
 			if [ "$DOCKER" = true ]; then
 				sudo docker build -t meritoki/location-service .
-				sudo docker run -dlt --restart unless-stopped -p 3002:3002 meritoki/location-service
+				sudo docker run --network host -dlt --restart unless-stopped -p 3002:3002 meritoki/location-service
 			else
-				sudo nodejs index.js &	
+				sudo nodejs index.js &
 			fi
 		cd -
 	;;
@@ -155,9 +151,9 @@ case "$1" in
 			cp ../config/local/service/id/properties.js controller/properties.js
 			if [ "$DOCKER" = true ]; then
 				sudo docker build -t meritoki/id-service .
-				sudo docker run -dlt --restart unless-stopped -p 3003:3003 meritoki/id-service
+				sudo docker run --network host -dlt --restart unless-stopped -p 3003:3003 meritoki/id-service
 			else
-				sudo nodejs index.js &	
+				sudo nodejs index.js &
 			fi
 		cd -
 	;;
@@ -187,6 +183,6 @@ case "$1" in
 		echo clone-local
 		echo clone-remote
 		echo clone-remove
-		
+
 	;;
 esac

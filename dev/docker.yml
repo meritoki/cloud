@@ -1,0 +1,68 @@
+---
+
+
+- name: run the playbook tasks on the localhost
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: update the apt package index i.e. apt-get update
+      apt: update_cache=yes
+
+    - name: Install Packages
+      apt: pkg={{ item }} state=installed
+      become: true
+      with_items:
+        - python-setuptools
+        - python-dev
+        - build-essential
+
+    - name: Intall pip
+      command:  easy_install pip
+
+    - name: Install Python Modules for Docker
+      pip:
+        name: "{{ item.name }}"
+        version: "{{ item.version }}"
+        state: present
+      with_items:
+      - { name: docker-py, version: 1.10.6 }
+
+    - name: Build Docker image from Dockerfile
+      docker_image:
+        name: auth-service
+        path: ./auth
+        state: build
+    - name: Run docker container
+      command: docker run --network host -dlt --restart unless-stopped -p 3000:3000 auth-service
+
+    - name: Build Docker image from Dockerfile
+      docker_image:
+        name: user-service
+        path: ./user
+        state: build
+    - name: Run docker container
+      command: docker run --network host -dlt --restart unless-stopped -p 3001:3001 user-service
+
+    - name: Build Docker image from Dockerfile
+      docker_image:
+        name: service
+        path: ./service
+        state: build
+    - name: Run docker container
+      command: docker run --network host -dlt --restart unless-stopped -p 8080:8080 service
+
+    - name: Build Docker image from Dockerfile
+      docker_image:
+        name: id-service
+        path: ./id
+        state: build
+    - name: Run docker container
+      command: docker run --network host -dlt --restart unless-stopped -p 3003:3003 id-service
+
+    - name: Build Docker image from Dockerfile
+      docker_image:
+        name: location-service
+        path: ./location
+        state: build
+    - name: Run docker container
+      command: docker run --network host -dlt --restart unless-stopped -p 3002:3002 location-service

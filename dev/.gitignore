@@ -1,2 +1,9 @@
 archive/
-
+vars.sh
+auth/
+config/
+database/
+id/
+location/
+service/
+user/
