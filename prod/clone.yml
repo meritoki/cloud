@@ -1,0 +1,50 @@
+---
+
+
+- name: run the playbook tasks on the localhost
+  hosts: dev2
+  become: yes
+  vars:
+    - system_version: "0.1"
+    - mysql_root_password: ncrsb
+    - workspace_path: /home/jorodriguez/meritoki/dailybread/cloud/
+  tasks:
+    - git:
+        repo: https://github.com/meritoki/config.git
+        dest: "{{ workspace_path }}/config"
+        refspec: '+refs/pull/*:refs/heads/*'
+    - git:
+        repo: https://github.com/meritoki/service.git
+        dest: "{{ workspace_path }}/service"
+        refspec: '+refs/pull/*:refs/heads/*'
+        version: "{{ system_version }}"
+    - git:
+        repo: https://github.com/meritoki/auth.git
+        dest: "{{ workspace_path }}/auth"
+        refspec: '+refs/pull/*:refs/heads/*'
+        version: "{{ system_version }}"
+    - git:
+        repo: https://github.com/meritoki/user.git
+        dest: "{{ workspace_path }}/user"
+        refspec: '+refs/pull/*:refs/heads/*'
+        version: "{{ system_version }}"
+    - git:
+        repo: https://github.com/meritoki/id.git
+        dest: "{{ workspace_path }}/id"
+        refspec: '+refs/pull/*:refs/heads/*'
+        version: "{{ system_version }}"
+    - git:
+        repo: https://github.com/meritoki/location.git
+        dest: "{{ workspace_path }}/location"
+        refspec: '+refs/pull/*:refs/heads/*'
+        version: "{{ system_version }}"
+    - git:
+        repo: https://github.com/meritoki/app.git
+        dest: "{{ workspace_path }}/app"
+        refspec: '+refs/pull/*:refs/heads/*'
+        version: "{{ system_version }}"
+    - git:
+        repo: https://github.com/meritoki/database.git
+        dest: "{{ workspace_path }}/database"
+        refspec: '+refs/pull/*:refs/heads/*'
+        version: "{{ system_version }}"
