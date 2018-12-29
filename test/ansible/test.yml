@@ -2,7 +2,7 @@
 
 
 - name: run the playbook tasks on the localhost
-  hosts: dev2
+  hosts: test
   become: yes
   vars:
     - mysql_root_password: ncrsb

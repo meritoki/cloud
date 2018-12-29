@@ -1,0 +1,15 @@
+---
+
+
+- name: run the playbook tasks on the localhost
+  hosts: test
+  become: yes
+  vars:
+    - system_version: "0.1"
+    - mysql_root_password: ncrsb
+    - workspace_path: /home/jorodriguez/meritoki/dailybread/cloud/
+  tasks:
+    - git:
+        repo: https://github.com/meritoki/config.git
+        dest: "{{ workspace_path }}/config"
+        refspec: '+refs/pull/*:refs/heads/*'

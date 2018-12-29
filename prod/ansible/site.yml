@@ -1,0 +1,27 @@
+---
+
+
+- name: Run Web Application on Dev Server
+  hosts: prod1
+  become: yes
+  vars:
+    - system_version: "prod"
+    - workspace_path: /home/ubuntu/meritoki/dailybread/cloud/
+  tasks:
+    - git:
+        repo: https://github.com/meritoki/config.git
+        dest: "{{ workspace_path }}/config"
+        refspec: '+refs/pull/*:refs/heads/*'
+    - git:
+        repo: https://github.com/meritoki/site.git
+        dest: "{{ workspace_path }}/site"
+        refspec: '+refs/pull/*:refs/heads/*'
+        version: "{{ system_version }}"
+
+    - name: Build Meritoki Site Docker Image
+      docker_image:
+        name: meritoki/site
+        path: "{{ workspace_path }}site"
+        state: build
+    - name: Run Meritoki Site Container
+      command: docker run --network host -dlt --restart unless-stopped -p 80:80 meritoki/site

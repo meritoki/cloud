@@ -2,12 +2,37 @@
 
 
 - name: run Web Services on Dev Server
-  hosts: dev2
+  hosts: test2
   become: yes
   vars:
+    - system_version: "0.1"
     - workspace_path: /home/jorodriguez/meritoki/dailybread/cloud/
   tasks:
-
+    - git:
+        repo: https://github.com/meritoki/service.git
+        dest: "{{ workspace_path }}/service"
+        refspec: '+refs/pull/*:refs/heads/*'
+        version: "{{ system_version }}"
+    - git:
+        repo: https://github.com/meritoki/auth.git
+        dest: "{{ workspace_path }}/auth"
+        refspec: '+refs/pull/*:refs/heads/*'
+        version: "{{ system_version }}"
+    - git:
+        repo: https://github.com/meritoki/user.git
+        dest: "{{ workspace_path }}/user"
+        refspec: '+refs/pull/*:refs/heads/*'
+        version: "{{ system_version }}"
+    - git:
+        repo: https://github.com/meritoki/id.git
+        dest: "{{ workspace_path }}/id"
+        refspec: '+refs/pull/*:refs/heads/*'
+        version: "{{ system_version }}"
+    - git:
+        repo: https://github.com/meritoki/location.git
+        dest: "{{ workspace_path }}/location"
+        refspec: '+refs/pull/*:refs/heads/*'
+        version: "{{ system_version }}"
 
     - name: Copy Auth Service Config
       command: "cp {{ workspace_path }}/config/local/service/auth/properties.js {{ workspace_path }}auth/controller/properties.js"

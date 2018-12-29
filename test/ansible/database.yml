@@ -1,0 +1,21 @@
+---
+
+
+- name: Run Database on Dev Server
+  hosts: test3
+  become: yes
+  vars:
+    - system_version: "0.1"
+    - workspace_path: /home/jorodriguez/meritoki/dailybread/cloud/
+  tasks:
+    - git:
+        repo: https://github.com/meritoki/database.git
+        dest: "{{ workspace_path }}/database"
+        refspec: '+refs/pull/*:refs/heads/*'
+        version: "{{ system_version }}"
+    - name: Configure Database
+      command: "{{ item }}"
+      args:
+        chdir: "{{ workspace_path }}database"
+      with_items:
+        - sh ./install.sh new

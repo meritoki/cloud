@@ -7,7 +7,7 @@
   vars:
     - system_version: "0.1"
     - mysql_root_password: ncrsb
-    - workspace_path: /home/jorodriguez/meritoki/dailybread/cloud/
+    - workspace_path: /home/ubuntu/meritoki/dailybread/cloud/
   tasks:
     - git:
         repo: https://github.com/meritoki/config.git

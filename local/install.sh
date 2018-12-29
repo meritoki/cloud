@@ -1,9 +1,12 @@
 #!/bin/bash
 . "$(dirname $0)/vars.sh"
+sudo cp ./ansible/hosts /etc/ansible/
 case "$1" in
 	ansible)
-		ansible-playbook -K local.yml
-		ansible-playbook -K docker.yml
+		cd ansible
+				ansible-playbook -K local.yml
+				ansible-playbook -K docker.yml
+		cd -
 	;;
 	remove)
 		sudo rm -r config
@@ -166,9 +169,9 @@ case "$1" in
 		sudo docker stop $(sudo docker ps -a -q)
 	;;
 	delete-containers)
-		sudo docker rm $(sudo docker ps -a -q)
+		sudo docker rm -f $(sudo docker ps -a -q)
 	;;
 	delete-images)
-		sudo docker rmi $(sudo docker images -q)
+		sudo docker rmi -f $(sudo docker images -q)
 	;;
 esac

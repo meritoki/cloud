@@ -1,0 +1,30 @@
+---
+
+
+- name: run the playbook tasks on the localhost
+  hosts: test
+  become: yes
+  vars:
+    - workspace_path: /home/jorodriguez/meritoki/dailybread/cloud/
+  tasks:
+    - name: update the apt package index i.e. apt-get update
+      apt: update_cache=yes
+
+    - name: Install Packages
+      apt: pkg={{ item }} state=installed
+      become: true
+      with_items:
+        - python-setuptools
+        - python-dev
+        - build-essential
+
+    - name: Intall pip
+      command:  easy_install pip
+
+    - name: Install Python Modules for Docker
+      pip:
+        name: "{{ item.name }}"
+        version: "{{ item.version }}"
+        state: present
+      with_items:
+      - { name: docker-py, version: 1.10.6 }
