@@ -1,0 +1,19 @@
+---
+
+
+- name: Run Web Application on Dev Server
+  hosts: dev2
+  become: yes
+  vars:
+    - workspace_path: /home/jorodriguez/meritoki/dailybread/cloud/
+  tasks:
+
+    - name: Copy Web Application Config
+      command: "cp {{ workspace_path }}config/local/app/web/properties.js {{ workspace_path }}app/controller/properties.js"
+    - name: Build Web Application Docker Image
+      docker_image:
+        name: dailybread/app
+        path: "{{ workspace_path }}app"
+        state: build
+    - name: Run Web Application Container
+      command: docker run --network host -dlt --restart unless-stopped -p 80:80 dailybread/app

@@ -1,0 +1,23 @@
+- name: Remove Git Repository Clone Directories from Dev Server
+  hosts: dev2
+  become: yes
+  vars:
+    - mysql_root_password: ncrsb
+    - workspace_path: /home/jorodriguez/meritoki/dailybread/cloud/
+  tasks:
+    - name: Remove Config
+      command: "rm -fr {{ workspace_path }}config"
+    - name: Remove Web Service
+      command: "rm -fr {{ workspace_path }}service"
+    - name: Remove Auth Service
+      command: "rm -fr {{ workspace_path }}auth"
+    - name: Remove User Service
+      command: "rm -fr {{ workspace_path }}user"
+    - name: Remove Location Service
+      command: "rm -fr {{ workspace_path }}location"
+    - name: Remove ID Service
+      command: "rm -fr {{ workspace_path }}id"
+    - name: Remove Web Application
+      command: "rm -fr {{ workspace_path }}app"
+    - name: Remove Database
+      command: "rm -fr {{ workspace_path }}database"

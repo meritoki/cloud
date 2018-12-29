@@ -1,0 +1,15 @@
+---
+
+
+- name: Run Database on Dev Server
+  hosts: dev2
+  become: yes
+  vars:
+    - workspace_path: /home/jorodriguez/meritoki/dailybread/cloud/
+  tasks:
+    - name: Configure Database
+      command: "{{ item }}"
+      args:
+        chdir: "{{ workspace_path }}database"
+      with_items:
+        - sh ./install.sh new

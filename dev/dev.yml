@@ -2,9 +2,12 @@
 
 
 - name: run the playbook tasks on the localhost
-  hosts: dev
+  hosts: dev2
   become: yes
+  vars:
+    - mysql_root_password: ncrsb
   tasks:
+
 
   - name: print out the hostname of target
     command: hostname
@@ -44,9 +47,11 @@
      - curl
      - software-properties-common
      - docker-ce
+     - git
+     - npm
 
   - name: Specify MySQL root password before installing
-   debconf: name='mysql-server' question='mysql-server/root_password' value='{{mysql_root_password}}' vtype='password'
+    debconf: name='mysql-server' question='mysql-server/root_password' value='{{mysql_root_password}}' vtype='password'
     become: true
 
   - name: Confirm MySQL root password before installing
@@ -57,12 +62,10 @@
     apt: pkg={{ item }} state=installed
     become: true
     with_items:
-      - mysql-client
-      - mysql-common
-      - mysql-server
-      - python-mysqldb
+     - mysql-client
+     - mysql-common
+     - mysql-server
+     - python-mysqldb
 
   - name: Start the MySQL service
     action: service name=mysql state=started
-# Update the root password immediately. This should come first as ordering
-# is very important

@@ -1,0 +1,70 @@
+---
+
+
+- name: run the playbook tasks on the localhost
+  hosts: local
+  become: yes
+  vars:
+    - workspace_path: /home/jorodriguez/meritoki/dailybread/cloud/
+  tasks:
+    - name: update the apt package index i.e. apt-get update
+      apt: update_cache=yes
+
+    - name: Install Packages
+      apt: pkg={{ item }} state=installed
+      become: true
+      with_items:
+        - python-setuptools
+        - python-dev
+        - build-essential
+
+    - name: Intall pip
+      command:  easy_install pip
+
+    - name: Install Python Modules for Docker
+      pip:
+        name: "{{ item.name }}"
+        version: "{{ item.version }}"
+        state: present
+      with_items:
+      - { name: docker-py, version: 1.10.6 }
+
+    - name: Build Web Service Docker Image
+      docker_image:
+        name: dailybread/service
+        path: "{{ workspace_path }}service"
+        state: build
+    - name: Run Web Service Container
+      command: docker run --network host -dlt --restart unless-stopped -p 8080:8080 dailybread/service
+
+    - name: Build Auth Service Docker Image
+      docker_image:
+        name: dailybread/auth-service
+        path: "{{ workspace_path }}auth"
+        state: build
+    - name: Run Auth Service Container
+      command: docker run --network host -dlt --restart unless-stopped -p 3000:3000 dailybread/auth-service
+
+    - name: Build User Service Docker Image
+      docker_image:
+        name: dailybread/user-service
+        path: "{{ workspace_path }}user"
+        state: build
+    - name: Run User Service Container
+      command: docker run --network host -dlt --restart unless-stopped -p 3001:3001 dailybread/user-service
+
+    - name: Build Location Service Docker Image
+      docker_image:
+        name: dailybread/location-service
+        path: "{{ workspace_path }}location"
+        state: build
+    - name: Run Location Service Container
+      command: docker run --network host -dlt --restart unless-stopped -p 3002:3002 dailybread/location-service
+
+    - name: Build ID Service Docker Image
+      docker_image:
+        name: dailybread/id-service
+        path: "{{ workspace_path }}id"
+        state: build
+    - name: Run ID Service Container
+      command: docker run --network host -dlt --restart unless-stopped -p 3003:3003 dailybread/id-service

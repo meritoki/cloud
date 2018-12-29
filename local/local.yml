@@ -1,7 +1,7 @@
 ---
 
 
-- name: run the playbook tasks on the localhost
+- name: Run localhost Configuration
   hosts: 127.0.0.1
   connection: local
   become: yes
@@ -61,7 +61,7 @@
   - name: MySQL | install mysql packages
     apt: pkg={{ item }} state=installed
     become: true
-    with_items:    
+    with_items:
      - mysql-client
      - mysql-common
      - mysql-server
