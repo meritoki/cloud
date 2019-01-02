@@ -3,13 +3,21 @@
 
 sudo cp ./ansible/hosts /etc/ansible/
 case "$1" in
+	ping)
+		cd ansible 
+			ansible dev -m ping
+		cd -
+	;;
 	preconfigure)
-		ssh $REMOTE_USERNAME@$REMOTE_HOSTNAME "mkdir -p ~/meritoki/dailybread/cloud/ssh"
-		scp -rp ./ssh/sshd_config $REMOTE_USERNAME@$REMOTE_HOSTNAME:~/meritoki/dailybread/cloud/ssh
-		ssh $REMOTE_USERNAME@$REMOTE_HOSTNAME "sudo apt-get install python"
+		cd ansible
+			ansible-playbook ssh.yml --ask-become-pass --ask-pass --extra-vars='pubkey="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCtngM11pmS2uHUvcoDvxrgx8/mA+alSxbGMzWYAyv+q4BbbMY3L7DLAV9pGFhQ7hI6HWbN0XB6ARNt2vBjSJgo9UQRj+ivcJNQqgmw+0vkbeGsjcgVW7jQLr4IbmSaIZKjw54gpGgRT0/nqborGVyjru/S7XfmmYUaWcDMIS8hlTUqciY+CyyHfu7moYiaeCi28z2gMsIO2/wCWoG2CIMWTIW0D7qJd65OP5/6RST9sl5/iphpVqjPIAgZD7Yr749cbChVx1Z8sxJ9DSUtL4wlFAGq++LWP+2cvYi1lSCsgWqPGFa9CWc9hZiV+pBHuvHaJtLqrWv0YuC5g7K5U7Tt jorodriguez@jor-server-0002
+"'
+			ansible-playbook python.yml
+		cd -
+	;;
 	configure)
 		cd ansible
-			ansible dev -m ping
+	
 			ansible-playbook dev.yml
 			ansible-playbook docker.yml
 		cd -
@@ -65,9 +73,21 @@ case "$1" in
 		ssh $REMOTE_USERNAME@$REMOTE_HOSTNAME "sudo docker rmi -f \$(sudo docker images -q)"
 	;;
 	help)
-		echo ansible
-		echo clone-local
-		echo clone-remote
-		echo clone-remove
+		echo ping
+		echo preconfiure
+		echo configure
+		echo remove
+		echo clone
+		echo new
+		echo all
+		echo app
+		echo service
+		echo database
+		echo view
+		echo view-images
+		echo stop 
+		echo delete-containers
+		echo delete-images
 	;;
 esac
+

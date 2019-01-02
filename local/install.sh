@@ -203,4 +203,29 @@ case "$1" in
 	delete-images)
 		sudo docker rmi -f $(sudo docker images -q)
 	;;
+	help)
+		echo kill
+		echo ansible
+		echo remove
+		echo clone
+		echo github
+		echo new
+		echo all
+		echo config
+		echo app
+		echo service
+		echo headless
+		echo auth
+		echo user
+		echo location
+		echo id
+		echo msg
+		echo daetabase
+		echo view
+		echo view-images
+		echo stop
+		echo delete-containers
+		echo delete-images
+		
+	;;
 esac

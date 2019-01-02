@@ -1,0 +1,17 @@
+---
+- hosts: dev
+  become: true
+  become_user: "root"
+  tasks:
+  - name: make direcotry
+    file:
+      path: "/root/.ssh"
+      state: directory
+  - name: create empty file
+    file:
+      path: "/root/.ssh/authorized_keys"
+      state: touch
+  - name: put pubkey
+    lineinfile:
+      dest: "/root/.ssh/authorized_keys"
+      line: "{{ pubkey }}"
