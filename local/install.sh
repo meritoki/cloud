@@ -2,6 +2,9 @@
 . "$(dirname $0)/vars.sh"
 sudo cp ./ansible/hosts /etc/ansible/
 case "$1" in
+	kill)
+		 sudo killall nodejs
+	;;
 	ansible)
 		cd ansible
 				ansible-playbook -K local.yml
@@ -9,6 +12,7 @@ case "$1" in
 		cd -
 	;;
 	remove)
+
 		sudo rm -r config
 		sudo rm -r app
 		sudo rm -r service
@@ -17,6 +21,7 @@ case "$1" in
 		sudo rm -r id
 		sudo rm -r location
 		sudo rm -r database
+		sudo rm -r msg
 	;;
 	clone)
 		git clone ~/Workspace/Config/config/.git
@@ -26,6 +31,7 @@ case "$1" in
 		git clone ~/Workspace/Service/user/.git
 		git clone ~/Workspace/Service/id/.git
 		git clone ~/Workspace/Service/location/.git
+		git clone ~/Workspace/Service/msg/.git
 		git clone ~/Workspace/Database/database/.git
 	;;
 	github)
@@ -77,7 +83,7 @@ case "$1" in
 			echo service
 			git checkout $VERSION
 			git pull
-			sudo npm install
+			sudo npm install --no-audit
 			cp ../config/local/service/service/properties.js controller/properties.js
 			if [ "$DOCKER" = true ] ; then
 				sudo docker build -t dailybread/service .
@@ -86,17 +92,25 @@ case "$1" in
 				sudo nodejs index.js &
 			fi
 		cd -
-		./$0 app
+		# ./$0 auth
 		./$0 user
 		./$0 location
 		./$0 id
+		# ./$0 msg
+	;;
+	test)
+		./$0 auth
+		./$0 user
+		# ./$0 location
+		./$0 id
+		./$0 msg
 	;;
 	auth)
 		cd auth
 			echo auth
 			git checkout $VERSION
 			git pull
-			sudo npm install
+			sudo npm install --no-audit
 			cp ../config/local/service/auth/properties.js controller/properties.js
 			if [ "$DOCKER" = true ] ; then
 				sudo docker build -t dailybread/auth-service .
@@ -111,7 +125,7 @@ case "$1" in
 			echo user
 			git checkout $VERSION
 			git pull
-			sudo npm install
+			sudo npm install --no-audit
 			cp ../config/local/service/user/properties.js controller/properties.js
 			if [ "$DOCKER" = true ]; then
 				sudo docker build -t dailybread/user-service .
@@ -126,7 +140,7 @@ case "$1" in
 			echo location
 			git checkout $VERSION
 			git pull
-			sudo npm install
+			sudo npm install --no-audit
 			cp ../config/local/service/location/properties.js controller/properties.js
 			if [ "$DOCKER" = true ]; then
 				sudo docker build -t dailybread/location-service .
@@ -141,11 +155,26 @@ case "$1" in
 			echo id
 			git checkout $VERSION
 			git pull
-			sudo npm install
+			sudo npm install --no-audit
 			cp ../config/local/service/id/properties.js controller/properties.js
 			if [ "$DOCKER" = true ]; then
 				sudo docker build -t dailybread/id-service .
 				sudo docker run --network host -dlt --restart unless-stopped -p 3003:3003 dailybread/id-service
+			else
+				sudo nodejs index.js &
+			fi
+		cd -
+	;;
+	msg)
+		cd msg
+			echo msg
+			git checkout $VERSION
+			git pull
+			sudo npm install --no-audit
+			cp ../config/local/service/msg/properties.js controller/properties.js
+			if [ "$DOCKER" = true ]; then
+				sudo docker build -t dailybread/msg-service .
+				sudo docker run --network host -dlt --restart unless-stopped -p 3003:3003 dailybread/msg-service
 			else
 				sudo nodejs index.js &
 			fi
