@@ -7,8 +7,8 @@ case "$1" in
 	;;
 	ansible)
 		cd ansible
-				ansible-playbook -K local.yml
-				ansible-playbook -K docker.yml
+			ansible-playbook -K local.yml
+			ansible-playbook -K docker.yml
 		cd -
 	;;
 	remove)
@@ -43,7 +43,7 @@ case "$1" in
 		git clone https://github.com/meritoki/database.git
 		git clone https://github.com/meritoki/app.git
 		git clone https://github.com/meritoki/service.git
-  ;;
+  	;;
 	new)
 		./$0 ansible
 		./$0 remove
@@ -92,16 +92,16 @@ case "$1" in
 				sudo nodejs index.js &
 			fi
 		cd -
-		# ./$0 auth
+		./$0 auth
 		./$0 user
 		./$0 location
 		./$0 id
-		# ./$0 msg
+		./$0 msg
 	;;
-	test)
+	headless)
 		./$0 auth
 		./$0 user
-		# ./$0 location
+		./$0 location
 		./$0 id
 		./$0 msg
 	;;
