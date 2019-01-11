@@ -1,0 +1,50 @@
+{
+	"id": "96285ec4-df4e-492b-919e-a1a094fcc763",
+	"name": "Daily Bread User Web Service",
+	"allTests": [],
+	"timestamp": "2019-01-04T22:25:59.629Z",
+	"collection_id": "f880db29-0bbc-4494-8a4f-fe040cf02187",
+	"folder_id": 0,
+	"target_type": "collection",
+	"environment_id": "0",
+	"data": [],
+	"delay": 0,
+	"count": 1,
+	"collection": {
+		"id": "f880db29-0bbc-4494-8a4f-fe040cf02187",
+		"name": "Daily Bread User Web Service",
+		"description": "",
+		"auth": null,
+		"events": null,
+		"variables": [],
+		"order": [
+			"b5de208c-8258-4b3c-b7da-e278b0dd3541",
+			"535fc0de-8b7b-4bca-86c3-bb64851b70c3"
+		],
+		"folders_order": [],
+		"owner": "6221220",
+		"permissions": {},
+		"favorite": false,
+		"shared": false,
+		"type": "collection",
+		"depth": 0
+	},
+	"folder": null,
+	"environment": null,
+	"globals": [],
+	"results": [],
+	"totalPass": 0,
+	"totalFail": 0,
+	"totalTime": 0,
+	"lifecycle": "done",
+	"requests": [
+		{
+			"name": "localhost:3001/v1/user/id",
+			"id": "b5de208c-8258-4b3c-b7da-e278b0dd3541",
+			"url": "localhost:3001/v1/user/id",
+			"time": "2019-01-04T22:25:59.629Z",
+			"testPassFailCounts": {}
+		}
+	],
+	"synced": false
+}

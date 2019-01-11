@@ -1,0 +1,544 @@
+{
+	"id": "cf398f07-4a56-444d-acac-cd762d708c70",
+	"name": "Daily Bread Auth Web Service",
+	"allTests": [],
+	"timestamp": "2019-01-05T00:27:38.395Z",
+	"collection_id": "ee39db7a-eb00-4f33-b348-202c95580e0c",
+	"folder_id": 0,
+	"target_type": "collection",
+	"environment_id": "0",
+	"data": [],
+	"delay": 0,
+	"count": 1,
+	"collection": {
+		"id": "ee39db7a-eb00-4f33-b348-202c95580e0c",
+		"name": "Daily Bread Auth Web Service",
+		"description": null,
+		"auth": null,
+		"events": null,
+		"variables": null,
+		"order": [
+			"7b7484c5-691a-4c9a-a061-86a7c4f52e84",
+			"9056e514-21d0-4130-abf0-b567f22123c0",
+			"de4a282f-7130-4a5d-966a-481ae0100bdb",
+			"ab0f0617-418d-430b-a0cc-37e6a3bfa022",
+			"99f8821a-a4b7-4eff-9a47-022442743811",
+			"4ddf8ed4-bfee-4964-8b70-8cfa53701566",
+			"f5fcfa0d-4fbf-4ab4-bee7-0dc24b4a50af"
+		],
+		"folders_order": [],
+		"owner": "6221220",
+		"permissions": {},
+		"favorite": true,
+		"shared": false,
+		"type": "collection",
+		"depth": 0
+	},
+	"folder": null,
+	"environment": null,
+	"globals": [],
+	"results": [
+		{
+			"name": "localhost:3000/v1/auth/name/password",
+			"id": "7b7484c5-691a-4c9a-a061-86a7c4f52e84",
+			"url": "localhost:3000/v1/auth/name/password",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"error": null,
+				"name": "response is ok",
+				"status": "pass",
+				"response must be valid and have a body": true,
+				"response should be okay to process": true
+			},
+			"testPassFailCounts": {
+				"response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response must be valid and have a body": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"194"
+			],
+			"allTests": [
+				{
+					"response is ok": true,
+					"response must be valid and have a body": true,
+					"response should be okay to process": true
+				}
+			],
+			"time": "194",
+			"totalRequestTime": "194",
+			"iterationResults": {}
+		},
+		{
+			"name": "localhost:3000/v1/auth/name/",
+			"id": "9056e514-21d0-4130-abf0-b567f22123c0",
+			"url": "localhost:3000/v1/auth/name/",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"error": null,
+				"name": "response is ok",
+				"status": "pass",
+				"response must be valid and have a body": true,
+				"response should be okay to process": true
+			},
+			"testPassFailCounts": {
+				"response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response must be valid and have a body": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"4"
+			],
+			"allTests": [
+				{
+					"response is ok": true,
+					"response must be valid and have a body": true,
+					"response should be okay to process": true
+				}
+			],
+			"time": "4",
+			"totalRequestTime": "4",
+			"iterationResults": {}
+		},
+		{
+			"name": "localhost:3000/v1/auth/name/",
+			"id": "de4a282f-7130-4a5d-966a-481ae0100bdb",
+			"url": "localhost:3000/v1/auth/name/",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {},
+			"times": [
+				"51"
+			],
+			"allTests": [
+				{}
+			],
+			"time": "51",
+			"totalRequestTime": "51",
+			"iterationResults": {}
+		},
+		{
+			"name": "localhost:3000/v1/auth/id",
+			"id": "ab0f0617-418d-430b-a0cc-37e6a3bfa022",
+			"url": "localhost:3000/v1/auth/id",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"error": null,
+				"name": "response is ok",
+				"status": "pass",
+				"response must be valid and have a body": true,
+				"response should be okay to process": true
+			},
+			"testPassFailCounts": {
+				"response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response must be valid and have a body": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"46"
+			],
+			"allTests": [
+				{
+					"response is ok": true,
+					"response must be valid and have a body": true,
+					"response should be okay to process": true
+				}
+			],
+			"time": "46",
+			"totalRequestTime": "46",
+			"iterationResults": {}
+		},
+		{
+			"name": "localhost:3000/v1/auth/client",
+			"id": "99f8821a-a4b7-4eff-9a47-022442743811",
+			"url": "localhost:3000/v1/auth/client",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"error": null,
+				"name": "response is ok",
+				"status": "pass",
+				"response must be valid and have a body": true,
+				"response should be okay to process": true
+			},
+			"testPassFailCounts": {
+				"response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response must be valid and have a body": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"5"
+			],
+			"allTests": [
+				{
+					"response is ok": true,
+					"response must be valid and have a body": true,
+					"response should be okay to process": true
+				}
+			],
+			"time": "5",
+			"totalRequestTime": "5",
+			"iterationResults": {}
+		},
+		{
+			"name": "localhost:3000/v1/auth/code",
+			"id": "4ddf8ed4-bfee-4964-8b70-8cfa53701566",
+			"url": "localhost:3000/v1/auth/code",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"error": null,
+				"name": "response is ok",
+				"status": "pass",
+				"response must be valid and have a body": true,
+				"response should be okay to process": true
+			},
+			"testPassFailCounts": {
+				"response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response must be valid and have a body": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"6"
+			],
+			"allTests": [
+				{
+					"response is ok": true,
+					"response must be valid and have a body": true,
+					"response should be okay to process": true
+				}
+			],
+			"time": "6",
+			"totalRequestTime": "6",
+			"iterationResults": {}
+		},
+		{
+			"name": "localhost:3000/v1/auth/code",
+			"id": "f5fcfa0d-4fbf-4ab4-bee7-0dc24b4a50af",
+			"url": "localhost:3000/v1/auth/code",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"error": null,
+				"name": "response is ok",
+				"status": "pass",
+				"response must be valid and have a body": true,
+				"response should be okay to process": true
+			},
+			"testPassFailCounts": {
+				"response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response must be valid and have a body": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"44"
+			],
+			"allTests": [
+				{
+					"response is ok": true,
+					"response must be valid and have a body": true,
+					"response should be okay to process": true
+				}
+			],
+			"time": "44",
+			"totalRequestTime": "44",
+			"iterationResults": {}
+		}
+	],
+	"totalPass": 18,
+	"totalFail": 0,
+	"totalTime": 350,
+	"lifecycle": "done",
+	"requests": [
+		{
+			"name": "localhost:3000/v1/auth/name/password",
+			"id": "7b7484c5-691a-4c9a-a061-86a7c4f52e84",
+			"url": "localhost:3000/v1/auth/name/password",
+			"time": "2019-01-05T00:27:38.395Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response must be valid and have a body": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "localhost:3000/v1/auth/name/",
+			"id": "9056e514-21d0-4130-abf0-b567f22123c0",
+			"url": "localhost:3000/v1/auth/name/",
+			"time": "2019-01-05T00:27:38.395Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response must be valid and have a body": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "localhost:3000/v1/auth/name/",
+			"id": "de4a282f-7130-4a5d-966a-481ae0100bdb",
+			"url": "localhost:3000/v1/auth/name/",
+			"time": "2019-01-05T00:27:38.395Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {}
+		},
+		{
+			"name": "localhost:3000/v1/auth/id",
+			"id": "ab0f0617-418d-430b-a0cc-37e6a3bfa022",
+			"url": "localhost:3000/v1/auth/id",
+			"time": "2019-01-05T00:27:38.395Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response must be valid and have a body": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "localhost:3000/v1/auth/client",
+			"id": "99f8821a-a4b7-4eff-9a47-022442743811",
+			"url": "localhost:3000/v1/auth/client",
+			"time": "2019-01-05T00:27:38.395Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response must be valid and have a body": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "localhost:3000/v1/auth/code",
+			"id": "4ddf8ed4-bfee-4964-8b70-8cfa53701566",
+			"url": "localhost:3000/v1/auth/code",
+			"time": "2019-01-05T00:27:38.395Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response must be valid and have a body": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "localhost:3000/v1/auth/code",
+			"id": "f5fcfa0d-4fbf-4ab4-bee7-0dc24b4a50af",
+			"url": "localhost:3000/v1/auth/code",
+			"time": "2019-01-05T00:27:38.395Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response must be valid and have a body": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		}
+	],
+	"synced": false
+}

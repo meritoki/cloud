@@ -1,0 +1,598 @@
+{
+	"info": {
+		"_postman_id": "ee39db7a-eb00-4f33-b348-202c95580e0c",
+		"name": "daily-bread-auth-service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:3000/v1/auth/name/password",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d1dd77ce-70d5-4b67-b3a7-7b9b22c26f8d",
+						"exec": [
+							"// example using pm.response.to.have",
+							"pm.test(\"response is ok\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"// example using pm.response.to.be*",
+							"pm.test(\"response must be valid and have a body\", function () {",
+							"     // assert that the status code is 200",
+							"     pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants",
+							"     // assert that the response has a valid JSON body",
+							"     pm.response.to.be.withBody;",
+							"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed",
+							"});",
+							"",
+							"",
+							"// // example using response assertions",
+							"// pm.test(\"response should be okay to process\", function () { ",
+							"//     pm.response.to.not.be.error; ",
+							"//     pm.response.to.have.jsonBody(\"\"); ",
+							"//     pm.response.to.not.have.jsonBody(\"error\"); ",
+							"// });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "jorodriguez1988@yahoo.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/v1/auth/name/password",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"auth",
+						"name",
+						"password"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "localhost:8080/v1/auth/name/password",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "jorodriguez1988@yahoo.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/v1/auth/name/password",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"auth",
+								"name",
+								"password"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "undefined"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET,POST,DELETE"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type, Authorization, Content-Length, X-Requested-With"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "default-src 'self'"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "144"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 28 Dec 2018 18:00:31 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <meta charset=\"utf-8\">\n        <title>Error</title>\n    </head>\n    <body>\n        <pre>Cannot GET /login</pre>\n    </body>\n</html>"
+				}
+			]
+		},
+		{
+			"name": "localhost:3000/v1/auth/name/",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "15359cb9-30fb-4c19-ae1e-95c57c5aee38",
+						"exec": [
+							"// example using pm.response.to.have",
+							"pm.test(\"response is ok\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"// example using pm.response.to.be*",
+							"pm.test(\"response must be valid and have a body\", function () {",
+							"     // assert that the status code is 200",
+							"     pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants",
+							"     // assert that the response has a valid JSON body",
+							"     pm.response.to.be.withBody;",
+							"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed",
+							"});",
+							"",
+							"",
+							"// // example using response assertions",
+							"// pm.test(\"response should be okay to process\", function () { ",
+							"//     pm.response.to.not.be.error; ",
+							"//     pm.response.to.have.jsonBody(\"\"); ",
+							"//     pm.response.to.not.have.jsonBody(\"error\"); ",
+							"// });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "jorodriguez1988@yahoo.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/v1/auth/name/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"auth",
+						"name",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/v1/auth/name/",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "jorodriguez1988@yahoo.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/v1/auth/name/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"auth",
+						"name",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/v1/auth/id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5901d5d4-3775-4ade-898c-1386a17184c0",
+						"exec": [
+							"// example using pm.response.to.have",
+							"pm.test(\"response is ok\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"// example using pm.response.to.be*",
+							"pm.test(\"response must be valid and have a body\", function () {",
+							"     // assert that the status code is 200",
+							"     pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants",
+							"     // assert that the response has a valid JSON body",
+							"     pm.response.to.be.withBody;",
+							"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed",
+							"});",
+							"",
+							"",
+							"// // example using response assertions",
+							"// pm.test(\"response should be okay to process\", function () { ",
+							"//     pm.response.to.not.be.error; ",
+							"//     pm.response.to.have.jsonBody(\"\"); ",
+							"//     pm.response.to.not.have.jsonBody(\"error\"); ",
+							"// });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "idUser",
+							"value": "1\n",
+							"type": "text"
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/v1/auth/id",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"auth",
+						"id"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/v1/auth/client",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a670e89b-d421-4f7c-af3a-b679179e902f",
+						"exec": [
+							"// example using pm.response.to.have",
+							"pm.test(\"response is ok\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"// example using pm.response.to.be*",
+							"pm.test(\"response must be valid and have a body\", function () {",
+							"     // assert that the status code is 200",
+							"     pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants",
+							"     // assert that the response has a valid JSON body",
+							"     pm.response.to.be.withBody;",
+							"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed",
+							"});",
+							"",
+							"",
+							"// // example using response assertions",
+							"// pm.test(\"response should be okay to process\", function () { ",
+							"//     pm.response.to.not.be.error; ",
+							"//     pm.response.to.have.jsonBody(\"\"); ",
+							"//     pm.response.to.not.have.jsonBody(\"error\"); ",
+							"// });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "identification",
+							"value": "01",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/v1/auth/client",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"auth",
+						"client"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/v1/auth/code",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b44f6876-689f-47d0-b344-67baa1305a68",
+						"exec": [
+							"// example using pm.response.to.have",
+							"pm.test(\"response is ok\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"// example using pm.response.to.be*",
+							"pm.test(\"response must be valid and have a body\", function () {",
+							"     // assert that the status code is 200",
+							"     pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants",
+							"     // assert that the response has a valid JSON body",
+							"     pm.response.to.be.withBody;",
+							"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed",
+							"});",
+							"",
+							"",
+							"// // example using response assertions",
+							"// pm.test(\"response should be okay to process\", function () { ",
+							"//     pm.response.to.not.be.error; ",
+							"//     pm.response.to.have.jsonBody(\"\"); ",
+							"//     pm.response.to.not.have.jsonBody(\"error\"); ",
+							"// });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "value",
+							"value": "123",
+							"type": "text"
+						},
+						{
+							"key": "idUser",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "idClient",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "redirectURI",
+							"value": "/",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/v1/auth/code",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"auth",
+						"code"
+					],
+					"query": [
+						{
+							"key": "value",
+							"value": "123",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/v1/auth/code",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "be47c124-e7c4-4ef0-aa7c-6b6cfdfe660d",
+						"exec": [
+							"// example using pm.response.to.have",
+							"pm.test(\"response is ok\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"// example using pm.response.to.be*",
+							"pm.test(\"response must be valid and have a body\", function () {",
+							"     // assert that the status code is 200",
+							"     pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants",
+							"     // assert that the response has a valid JSON body",
+							"     pm.response.to.be.withBody;",
+							"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed",
+							"});",
+							"",
+							"",
+							"// // example using response assertions",
+							"// pm.test(\"response should be okay to process\", function () { ",
+							"//     pm.response.to.not.be.error; ",
+							"//     pm.response.to.have.jsonBody(\"\"); ",
+							"//     pm.response.to.not.have.jsonBody(\"error\"); ",
+							"// });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "key",
+							"value": "123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/v1/auth/code",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"auth",
+						"code"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "123",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

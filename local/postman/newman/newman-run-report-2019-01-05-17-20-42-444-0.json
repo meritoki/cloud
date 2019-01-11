@@ -1,0 +1,81 @@
+{
+  "collection": {
+    "item": [],
+    "event": [],
+    "variable": [],
+    "info": {
+      "_postman_id": "ee39db7a-eb00-4f33-b348-202c95580e0c",
+      "name": "daily-bread-auth-service",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+      "description": {}
+    }
+  },
+  "environment": {
+    "id": "1e33db2a-5ac9-473b-897f-7635657b1030",
+    "values": []
+  },
+  "globals": {
+    "id": "5cedd01c-c85b-46d0-af1e-c50fefef4f87",
+    "values": []
+  },
+  "run": {
+    "stats": {
+      "iterations": {
+        "total": 0,
+        "pending": 0,
+        "failed": 0
+      },
+      "items": {
+        "total": 0,
+        "pending": 0,
+        "failed": 0
+      },
+      "scripts": {
+        "total": 0,
+        "pending": 0,
+        "failed": 0
+      },
+      "prerequests": {
+        "total": 0,
+        "pending": 0,
+        "failed": 0
+      },
+      "requests": {
+        "total": 0,
+        "pending": 0,
+        "failed": 0
+      },
+      "tests": {
+        "total": 0,
+        "pending": 0,
+        "failed": 0
+      },
+      "assertions": {
+        "total": 0,
+        "pending": 0,
+        "failed": 0
+      },
+      "testScripts": {
+        "total": 0,
+        "pending": 0,
+        "failed": 0
+      },
+      "prerequestScripts": {
+        "total": 0,
+        "pending": 0,
+        "failed": 0
+      }
+    },
+    "timings": {
+      "responseAverage": 0,
+      "started": 1546708842415,
+      "completed": 1546708842443
+    },
+    "executions": [],
+    "transfers": {
+      "responseTotal": 0
+    },
+    "failures": [],
+    "error": null
+  }
+}
