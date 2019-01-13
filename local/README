@@ -1,0 +1,8 @@
+The local cloud environment is a single node deployment that allows a developer
+of tester to access all of the system. The deployment is controlled with a script
+called cloud.sh. It can be run as follows: ./cloud.sh. Running ./cloud.sh help shows
+all the possible parameters for the script.
+
+The basic command for cloud looks like the following:
+
+  ./cloud.sh [option] [version=0.1/0.2/dev] [docker=true/false]

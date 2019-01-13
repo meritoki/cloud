@@ -5,8 +5,9 @@
   hosts: test1
   become: yes
   vars:
-    - system_version: "0.1"
+    - system_version: "dev"
     - workspace_path: /home/jorodriguez/meritoki/dailybread/cloud/
+    - hostname: test-server-1
   tasks:
     - git:
         repo: https://github.com/meritoki/app.git
@@ -14,7 +15,7 @@
         refspec: '+refs/pull/*:refs/heads/*'
         version: "{{ system_version }}"
     - name: Copy Web Application Config
-      command: "cp {{ workspace_path }}config/local/app/web/properties.js {{ workspace_path }}app/controller/properties.js"
+      command: "cp {{ workspace_path }}config/test/{{ hostname }}/app/web/properties.js {{ workspace_path }}app/controller/properties.js"
     - name: Build Web Application Docker Image
       docker_image:
         name: dailybread/app

@@ -1,5 +1,5 @@
 - name: Remove Git Repository Clone Directories from Dev Server
-  hosts: dev2
+  hosts: dev
   become: yes
   vars:
     - mysql_root_password: ncrsb

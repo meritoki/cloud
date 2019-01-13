@@ -1,9 +1,30 @@
 #!/bin/bash
 . "$(dirname $0)/vars.sh"
 
-sudo cp ./ansible/hosts /etc/ansible/
+
 case "$1" in
+	hosts)
+		sudo cp ./ansible/hosts /etc/ansible/
+	;;
+	ping)
+		./$0 hosts
+		echo pinging test
+		cd ansible
+			ansible test -m ping
+		cd -
+	;;
+	preconfigure)
+		./$0 hosts
+		echo proconfiguring environment
+		cd ansible
+			ansible-playbook ssh.yml --ask-become-pass --ask-pass --extra-vars='pubkey="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCtngM11pmS2uHUvcoDvxrgx8/mA+alSxbGMzWYAyv+q4BbbMY3L7DLAV9pGFhQ7hI6HWbN0XB6ARNt2vBjSJgo9UQRj+ivcJNQqgmw+0vkbeGsjcgVW7jQLr4IbmSaIZKjw54gpGgRT0/nqborGVyjru/S7XfmmYUaWcDMIS8hlTUqciY+CyyHfu7moYiaeCi28z2gMsIO2/wCWoG2CIMWTIW0D7qJd65OP5/6RST9sl5/iphpVqjPIAgZD7Yr749cbChVx1Z8sxJ9DSUtL4wlFAGq++LWP+2cvYi1lSCsgWqPGFa9CWc9hZiV+pBHuvHaJtLqrWv0YuC5g7K5U7Tt jorodriguez@jor-server-0002
+"'
+			ansible-playbook python.yml
+		cd -
+	;;
 	configure)
+		./$0 hosts
+		echo configuring environment
 		cd ansible
 			ansible dev -m ping
 			ansible-playbook test.yml
@@ -26,9 +47,15 @@ case "$1" in
 		./$0 all
 	;;
 	all)
+		./$0 config
 		./$0 app
 		./$0 service
 		./$0 database
+	;;
+	config)
+		cd ansible
+			ansible-playbook config.yml
+		cd -
 	;;
 	app)
 		cd ansible
@@ -68,12 +95,26 @@ case "$1" in
 	delete-images)
 		ssh $REMOTE_USERNAME@$REMOTE_HOSTNAME_A "sudo docker rmi -f \$(sudo docker images -q)"
 		ssh $REMOTE_USERNAME@$REMOTE_HOSTNAME_B "sudo docker rmi -f \$(sudo docker images -q)"
-		ssh $REMOTE_USERNAME@$REMOTE_HOSTNAME_C "sudo docker rmi -f \$(sudo docker images -q)"				
+		ssh $REMOTE_USERNAME@$REMOTE_HOSTNAME_C "sudo docker rmi -f \$(sudo docker images -q)"
 	;;
 	help)
-		echo ansible
-		echo clone-local
-		echo clone-remote
-		echo clone-remove
+	  echo [option]
+		echo hosts
+		echo ping
+		echo preconfigure
+		echo configure
+		echo clone
+		echo remove
+		echo new
+		echo all
+		echo config
+		echo app
+		echo service
+		echo database
+		echo view
+		echo view-images
+		echo stop
+		echo delete-containers
+		echo delete-images
 	;;
 esac

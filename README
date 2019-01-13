@@ -1,0 +1,3 @@
+The DailyBread Cloud project is a set of scripts that enable a user
+to configure local, dev, test, and prod environments. Each has specific
+requirements which can be found in the corresponding folder.

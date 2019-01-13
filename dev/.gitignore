@@ -9,3 +9,4 @@ service/
 user/
 archive/
 app/
+node_modules/

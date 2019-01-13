@@ -49,6 +49,7 @@
      - docker-ce
      - git
      - npm
+     - redis-server
 
   - name: Specify MySQL root password before installing
     debconf: name='mysql-server' question='mysql-server/root_password' value='{{mysql_root_password}}' vtype='password'

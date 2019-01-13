@@ -1,0 +1,10 @@
+The test cloud environment is a multi-node deployment across 3 servers.
+The servers are aliased as test1, test2, test3. These aliases are used to
+install the web app, services, and database in there respective nodes
+
+1. test1: app
+2. test2: service
+3. test3: database
+
+Ansible is used to ensure each node has the same basic configuration and then
+used to deploy the correct software to each node.

@@ -1,10 +1,12 @@
 #!/bin/bash
 . "$(dirname $0)/vars.sh"
 
-sudo cp ./ansible/hosts /etc/ansible/
 case "$1" in
+	hosts)
+			sudo cp ./ansible/hosts /etc/ansible/
+	;;
 	ping)
-		cd ansible 
+		cd ansible
 			ansible dev -m ping
 		cd -
 	;;
@@ -17,7 +19,6 @@ case "$1" in
 	;;
 	configure)
 		cd ansible
-	
 			ansible-playbook dev.yml
 			ansible-playbook docker.yml
 		cd -
@@ -25,6 +26,16 @@ case "$1" in
 	clone)
 		cd ansible
 			ansible-playbook clone.yml
+		cd -
+	;;
+	clone-config)
+		cd ansible
+			ansible-playbook clone-config.yml
+		cd -
+	;;
+	clone-app)
+		cd ansible
+			ansible-playbook clone-app.yml
 		cd -
 	;;
 	remove)
@@ -73,6 +84,8 @@ case "$1" in
 		ssh $REMOTE_USERNAME@$REMOTE_HOSTNAME "sudo docker rmi -f \$(sudo docker images -q)"
 	;;
 	help)
+		echo [option]
+		echo hosts
 		echo ping
 		echo preconfiure
 		echo configure
@@ -85,9 +98,8 @@ case "$1" in
 		echo database
 		echo view
 		echo view-images
-		echo stop 
+		echo stop
 		echo delete-containers
 		echo delete-images
 	;;
 esac
-

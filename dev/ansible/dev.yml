@@ -2,7 +2,7 @@
 
 
 - name: run the playbook tasks on the localhost
-  hosts: dev2
+  hosts: dev
   become: yes
   vars:
     - mysql_root_password: ncrsb
@@ -11,9 +11,6 @@
 
   - name: print out the hostname of target
     command: hostname
-
-  - name: ensure aptitude is installed
-    command: apt-get -y install aptitude
 
   - name: update the apt package index i.e. apt-get update
     apt: update_cache=yes

@@ -2,7 +2,7 @@
 
 
 - name: Run Database on Dev Server
-  hosts: dev2
+  hosts: dev
   become: yes
   vars:
     - workspace_path: /home/jorodriguez/meritoki/dailybread/cloud/

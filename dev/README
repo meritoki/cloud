@@ -1,0 +1,23 @@
+The dev cloud environment tests single node deployments in a multi-node environment.
+Each machine is configured in the same way to compare functionality, performance,
+and failure. The idea, in part, is to practice with a multi-node environment. Later
+environments are multi-node.
+
+Ansible is used to manage all the nodes in the deployment, including
+the process of releasing the applications, including the following:
+
+1. cloning repositories from github
+2. checking out specified version
+3. run with nodejs
+4. build docker container
+
+Nodes in the dev environment also execute Jenkins. Jenkins is used for
+Continuous integration to ensure the dev branch of every reporitory is healthy.
+Healthy means it passes a build, postman tests (if applicable), and deploys on
+the dev server.
+
+All of this can be stopped with the following command:
+
+  sudo service jenkins stop
+
+  

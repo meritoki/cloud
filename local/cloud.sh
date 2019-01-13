@@ -1,18 +1,26 @@
 #!/bin/bash
 . "$(dirname $0)/vars.sh"
-sudo cp ./ansible/hosts /etc/ansible/
+
+VERSION="${2:-$VERSION}"
+DOCKER="${3:-$DOCKER}"
+HOSTNAME="${3:-localhost}"
 case "$1" in
 	kill)
-		 sudo killall nodejs
+		echo killing all node/nodejs processes
+		sudo killall nodejs
 	;;
-	ansible)
+	hosts)
+		sudo cp ./ansible/hosts /etc/ansible/
+	;;
+	configure)
+		echo running ansible to configure local env
 		cd ansible
 			ansible-playbook -K local.yml
 			ansible-playbook -K docker.yml
 		cd -
 	;;
 	remove)
-
+		echo removing all clone directories
 		sudo rm -r config
 		sudo rm -r app
 		sudo rm -r service
@@ -23,7 +31,17 @@ case "$1" in
 		sudo rm -r database
 		sudo rm -r msg
 	;;
+	remove-app)
+
+	;;
+	remove-service)
+
+	;;
+	remove-database)
+
+	;;
 	clone)
+		echo cloning repositories from local source
 		git clone ~/Workspace/Config/config/.git
 		git clone ~/Workspace/Application/app/.git
 		git clone ~/Workspace/Service/service/.git
@@ -34,7 +52,8 @@ case "$1" in
 		git clone ~/Workspace/Service/msg/.git
 		git clone ~/Workspace/Database/database/.git
 	;;
-	github)
+	clone-github)
+		echo cloning repositories from github
 		git clone https://github.com/meritoki/config.git
 		git clone https://github.com/meritoki/auth.git
 		git clone https://github.com/meritoki/user.git
@@ -45,7 +64,8 @@ case "$1" in
 		git clone https://github.com/meritoki/service.git
   	;;
 	new)
-		./$0 ansible
+		echo configuring and installing a new env
+		./$0 configure
 		./$0 remove
 		./$0 clone
 		./$0 all
@@ -59,7 +79,9 @@ case "$1" in
 	;;
 	config)
 		cd config
+			git stash
 			git checkout $VERSION
+			git status
 			git pull
 		cd -
 	;;
@@ -67,9 +89,10 @@ case "$1" in
 		cd app
 			echo app
 			git checkout $VERSION
+			git status
 			git pull
 			sudo npm install
-			cp ../config/local/app/web/properties.js controller/properties.js
+			cp ../config/local/$HOSTNAME/app/web/properties.js controller/properties.js
 			if [ "$DOCKER" = true ]; then
 				sudo docker build -t dailybread/app .
 				sudo docker run --network host -dlt --restart unless-stopped -p 80:80 dailybread/app
@@ -82,9 +105,10 @@ case "$1" in
 		cd service
 			echo service
 			git checkout $VERSION
+			git status
 			git pull
 			sudo npm install --no-audit
-			cp ../config/local/service/service/properties.js controller/properties.js
+			cp ../config/local/$HOSTNAME/service/service/properties.js controller/properties.js
 			if [ "$DOCKER" = true ] ; then
 				sudo docker build -t dailybread/service .
 				sudo docker run --network host -dlt --restart unless-stopped -p 8080:8080 dailybread/service
@@ -111,7 +135,7 @@ case "$1" in
 			git checkout $VERSION
 			git pull
 			sudo npm install --no-audit
-			cp ../config/local/service/auth/properties.js controller/properties.js
+			cp ../config/local/$HOSTNAME/service/auth/properties.js controller/properties.js
 			if [ "$DOCKER" = true ] ; then
 				sudo docker build -t dailybread/auth-service .
 				sudo docker run --network host -dlt --restart unless-stopped -p 3000:3000 dailybread/auth-service
@@ -126,7 +150,7 @@ case "$1" in
 			git checkout $VERSION
 			git pull
 			sudo npm install --no-audit
-			cp ../config/local/service/user/properties.js controller/properties.js
+			cp ../config/local/$HOSTNAME/service/user/properties.js controller/properties.js
 			if [ "$DOCKER" = true ]; then
 				sudo docker build -t dailybread/user-service .
 				sudo docker run --network host -dlt --restart unless-stopped -p 3001:3001 dailybread/user-service
@@ -139,9 +163,10 @@ case "$1" in
 		cd location
 			echo location
 			git checkout $VERSION
+			git status
 			git pull
 			sudo npm install --no-audit
-			cp ../config/local/service/location/properties.js controller/properties.js
+			cp ../config/local/$HOSTNAME/service/location/properties.js controller/properties.js
 			if [ "$DOCKER" = true ]; then
 				sudo docker build -t dailybread/location-service .
 				sudo docker run --network host -dlt --restart unless-stopped -p 3002:3002 dailybread/location-service
@@ -153,10 +178,12 @@ case "$1" in
 	id)
 		cd id
 			echo id
+			git stash
 			git checkout $VERSION
+			git status
 			git pull
 			sudo npm install --no-audit
-			cp ../config/local/service/id/properties.js controller/properties.js
+			cp ../config/local/$HOSTNAME/service/id/properties.js controller/properties.js
 			if [ "$DOCKER" = true ]; then
 				sudo docker build -t dailybread/id-service .
 				sudo docker run --network host -dlt --restart unless-stopped -p 3003:3003 dailybread/id-service
@@ -171,7 +198,7 @@ case "$1" in
 			git checkout $VERSION
 			git pull
 			sudo npm install --no-audit
-			cp ../config/local/service/msg/properties.js controller/properties.js
+			cp ../config/local/$HOSTNAME/service/msg/properties.js controller/properties.js
 			if [ "$DOCKER" = true ]; then
 				sudo docker build -t dailybread/msg-service .
 				sudo docker run --network host -dlt --restart unless-stopped -p 3003:3003 dailybread/msg-service
@@ -204,11 +231,12 @@ case "$1" in
 		sudo docker rmi -f $(sudo docker images -q)
 	;;
 	help)
+		echo [option] [version=0.1/0.2/dev] [docker=true/false]
 		echo kill
 		echo ansible
 		echo remove
 		echo clone
-		echo github
+		echo clone-github
 		echo new
 		echo all
 		echo config
@@ -226,6 +254,6 @@ case "$1" in
 		echo stop
 		echo delete-containers
 		echo delete-images
-		
+
 	;;
 esac

@@ -2,15 +2,14 @@
 
 
 - name: run Web Services on Dev Server
-  hosts: dev2
+  hosts: dev
   become: yes
   vars:
     - workspace_path: /home/jorodriguez/meritoki/dailybread/cloud/
+    - hostname: dev-server
   tasks:
-
-
     - name: Copy Auth Service Config
-      command: "cp {{ workspace_path }}/config/local/service/auth/properties.js {{ workspace_path }}auth/controller/properties.js"
+      command: "cp {{ workspace_path }}/config/dev/{{ hostname }}/service/auth/properties.js {{ workspace_path }}auth/controller/properties.js"
     - name: Build Auth Service Docker Image
       docker_image:
         name: dailybread/auth-service
@@ -18,9 +17,9 @@
         state: build
     - name: Run Auth Service Container
       command: docker run --network host -dlt --restart unless-stopped -p 3000:3000 dailybread/auth-service
-
+      
     - name: Copy User Service Config
-      command: "cp {{ workspace_path }}/config/local/service/user/properties.js {{ workspace_path }}user/controller/properties.js"
+      command: "cp {{ workspace_path }}/config/dev/{{ hostname }}/service/user/properties.js {{ workspace_path }}user/controller/properties.js"
     - name: Build User Service Docker Image
       docker_image:
         name: dailybread/user-service
@@ -30,7 +29,7 @@
       command: docker run --network host -dlt --restart unless-stopped -p 3001:3001 dailybread/user-service
 
     - name: Copy Location Service Config
-      command: "cp {{ workspace_path }}/config/local/service/location/properties.js {{ workspace_path }}location/controller/properties.js"
+      command: "cp {{ workspace_path }}/config/dev/{{ hostname }}/service/location/properties.js {{ workspace_path }}location/controller/properties.js"
     - name: Build Location Service Docker Image
       docker_image:
         name: dailybread/location-service
@@ -40,7 +39,7 @@
       command: docker run --network host -dlt --restart unless-stopped -p 3002:3002 dailybread/location-service
 
     - name: Copy ID Service Config
-      command: "cp {{ workspace_path }}/config/local/service/id/properties.js {{ workspace_path }}id/controller/properties.js"
+      command: "cp {{ workspace_path }}/config/dev/{{ hostname }}/service/id/properties.js {{ workspace_path }}id/controller/properties.js"
     - name: Build ID Service Docker Image
       docker_image:
         name: dailybread/id-service
@@ -50,7 +49,7 @@
       command: docker run --network host -dlt --restart unless-stopped -p 3003:3003 dailybread/id-service
 
     - name: Copy Web Service Config
-      command: "cp {{ workspace_path }}/config/local/service/service/properties.js {{ workspace_path }}service/controller/properties.js"
+      command: "cp {{ workspace_path }}/config/dev/{{ hostname }}/service/service/properties.js {{ workspace_path }}service/controller/properties.js"
     - name: Build Web Service Docker Image
       docker_image:
         name: dailybread/service

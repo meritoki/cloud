@@ -5,11 +5,13 @@
   hosts: test
   become: yes
   vars:
-    - system_version: "0.2"
-    - mysql_root_password: ncrsb
+    - system_version: "dev"
     - workspace_path: /home/jorodriguez/meritoki/dailybread/cloud/
+    - githubuser: "meritoki"
+    - githubpassword: "rohrWaka%4022001188"
   tasks:
     - git:
-        repo: https://github.com/meritoki/config.git
+        repo: https://{{ githubuser }}:{{ githubpassword }}@github.com/meritoki/config.git
         dest: "{{ workspace_path }}/config"
         refspec: '+refs/pull/*:refs/heads/*'
+        version: "{{ system_version }}"
