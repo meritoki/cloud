@@ -1,0 +1,11 @@
+local/app
+local/auth
+local/config
+local/database
+local/id
+local/location
+local/msg
+local/service
+local/user
+prod/aws/prod-server-01.pem
+
